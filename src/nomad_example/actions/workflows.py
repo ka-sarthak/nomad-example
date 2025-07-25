@@ -19,10 +19,8 @@ class ExampleWorkflow:
             maximum_attempts=3,
         )
         get_request_input = GetRequestInput(
-            url=(
-                'https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/'
-                f'cid/{data.cid}/property/Title,SMILES/JSON',
-            ),
+            url='https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/'
+            f'cid/{data.cid}/property/Title,SMILES/JSON',
             timeout=10,
         )
         result = await workflow.execute_activity(

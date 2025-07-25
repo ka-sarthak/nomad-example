@@ -1,4 +1,7 @@
-from nomad.config.models.plugins import WorkflowEntryPoint
+from temporalio import workflow
+
+with workflow.unsafe.imports_passed_through():
+    from nomad.config.models.plugins import WorkflowEntryPoint
 
 
 class MyActionEntryPoint(WorkflowEntryPoint):
