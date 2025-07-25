@@ -10,7 +10,7 @@ from nomad_example.actions.models import ExampleWorkflowInput
 m_package = SchemaPackage()
 
 
-class ExampleWorkflowSection(EntryData):
+class ExampleWorkflow(EntryData):
     """A section to run an example workflow using a PubChem CID."""
 
     cid = Quantity(
@@ -68,7 +68,7 @@ class ExampleWorkflowSection(EntryData):
             self.workflow_id = start_workflow(
                 workflow_name=workflow_name, data=input_data, task_queue=TaskQueue.CPU
             )
-            self.trigger_run_workflow = True
+            self.trigger_get_workflow_status = True
         except Exception as e:
             logger.error(f'Error running workflow: {e}')
 
