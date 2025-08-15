@@ -4,8 +4,8 @@ from temporalio import workflow
 from temporalio.common import RetryPolicy
 
 with workflow.unsafe.imports_passed_through():
-    from nomad_example.actions.activities import get_request
-    from nomad_example.actions.models import (
+    from nomad_example.actions.myaction.activities import get_request
+    from nomad_example.actions.myaction.models import (
         ExampleWorkflowInput,
         GetRequestInput,
     )
@@ -19,8 +19,8 @@ class ExampleWorkflow:
             maximum_attempts=3,
         )
         get_request_input = GetRequestInput(
-            url='https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/'
-            f'cid/{data.cid}/property/Title,SMILES/JSON',
+            url="https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/"
+            f"cid/{data.cid}/property/Title,SMILES/JSON",
             timeout=10,
         )
         result = await workflow.execute_activity(

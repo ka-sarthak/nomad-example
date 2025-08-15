@@ -1,6 +1,6 @@
 from temporalio import activity
 
-from nomad_example.actions.models import GetRequestInput
+from nomad_example.actions.myaction.models import GetRequestInput
 
 
 @activity.defn

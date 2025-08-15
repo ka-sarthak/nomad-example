@@ -113,7 +113,7 @@ where = ["src"]
 [project.entry-points.'nomad.plugin']
 
 schema_package_entry_point = "nomad_example.schema_packages:schema_package_entry_point"
-myaction = "nomad_example.actions:myaction"
+myaction = "nomad_example.actions.myaction:my_action"
 
 
 

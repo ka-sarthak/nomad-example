@@ -1,11 +1,10 @@
+from nomad.actions.utils import get_action_status, start_action
 from nomad.datamodel.data import EntryData
 from nomad.datamodel.metainfo.annotations import ELNAnnotation, ELNComponentEnum
 from nomad.datamodel.metainfo.basesections.v1 import PureSubstanceSection
 from nomad.metainfo import Quantity, SchemaPackage, SubSection
-from nomad.actions import TaskQueue
-from nomad.actions.utils import get_action_status, start_action
 
-from nomad_example.actions.models import ExampleWorkflowInput
+from nomad_example.actions.myaction.models import ExampleWorkflowInput
 
 m_package = SchemaPackage()
 
@@ -59,7 +58,7 @@ class ExampleWorkflow(EntryData):
             self.pubchem_result = None
             self.workflow_status = None
             self.workflow_id = None
-            workflow_name = 'nomad_example.actions:myaction'
+            workflow_name = 'nomad_example.actions.myaction:my_action'
             input_data = ExampleWorkflowInput(
                 user_id=archive.metadata.authors[0].user_id,
                 upload_id=archive.metadata.upload_id,
