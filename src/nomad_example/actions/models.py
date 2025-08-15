@@ -1,6 +1,6 @@
 from pydantic import BaseModel, Field
 
-# from nomad.orchestrator.workflows.models import BaseWorkflowInput
+# from nomad.actions.workflows.models import BaseWorkflowInput
 
 
 class BaseWorkflowInput(BaseModel):

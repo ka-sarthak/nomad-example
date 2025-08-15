@@ -2,8 +2,8 @@ from nomad.datamodel.data import EntryData
 from nomad.datamodel.metainfo.annotations import ELNAnnotation, ELNComponentEnum
 from nomad.datamodel.metainfo.basesections.v1 import PureSubstanceSection
 from nomad.metainfo import Quantity, SchemaPackage, SubSection
-from nomad.orchestrator.base import TaskQueue
-from nomad.orchestrator.utils import get_workflow_status, start_workflow
+from nomad.actions import TaskQueue
+from nomad.actions.utils import get_action_status, start_action
 
 from nomad_example.actions.models import ExampleWorkflowInput
 
@@ -59,15 +59,13 @@ class ExampleWorkflow(EntryData):
             self.pubchem_result = None
             self.workflow_status = None
             self.workflow_id = None
-            workflow_name = 'nomad_example.actions.workflows.ExampleWorkflow'
+            workflow_name = 'nomad_example.actions:myaction'
             input_data = ExampleWorkflowInput(
                 user_id=archive.metadata.authors[0].user_id,
                 upload_id=archive.metadata.upload_id,
                 cid=self.cid,
             )
-            self.workflow_id = start_workflow(
-                workflow_name=workflow_name, data=input_data, task_queue=TaskQueue.CPU
-            )
+            self.workflow_id = start_action(action_name=workflow_name, data=input_data)
             self.trigger_get_workflow_status = True
         except Exception as e:
             logger.error(f'Error running workflow: {e}')
@@ -83,7 +81,7 @@ class ExampleWorkflow(EntryData):
         if self.trigger_get_workflow_status:
             if self.workflow_id:
                 try:
-                    status = get_workflow_status(self.workflow_id)
+                    status = get_action_status(self.workflow_id)
                     self.workflow_status = status.name
                 except Exception as e:
                     logger.error(f'Error getting workflow status: {e}. ')

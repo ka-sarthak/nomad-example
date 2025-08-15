@@ -11,7 +11,7 @@ with workflow.unsafe.imports_passed_through():
     )
 
 
-@workflow.defn(name='nomad_example.actions.workflows.ExampleWorkflow')
+@workflow.defn
 class ExampleWorkflow:
     @workflow.run
     async def run(self, data: ExampleWorkflowInput) -> dict:
