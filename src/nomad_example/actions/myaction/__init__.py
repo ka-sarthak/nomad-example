@@ -8,7 +8,7 @@ with workflow.unsafe.imports_passed_through():
 
 class MyActionEntryPoint(ActionEntryPoint):
     task_queue: str = Field(
-        default=TaskQueue.CPU, description="Determines the task queue for this action"
+        default=TaskQueue.CPU, description='Determines the task queue for this action'
     )
 
     def load(self):
@@ -25,6 +25,6 @@ class MyActionEntryPoint(ActionEntryPoint):
 
 
 my_action = MyActionEntryPoint(
-    name="MyAction",
-    description="My custom action.",
+    name='MyAction',
+    description='My custom action.',
 )
